@@ -1,0 +1,37 @@
+.title {
+  margin-bottom: 3rem;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid var(--clr-primary);
+}
+
+th,
+td {
+  padding: 0.5rem;
+  border: 1px solid var(--clr-primary);
+  text-align: center;
+}
+
+.player {
+  text-align: left;
+  font-weight: bold;
+}
+
+tbody tr:first-child .player {
+  display: flex;
+  border: 0;
+  align-items: baseline;
+  gap: 10px;
+
+  &::after {
+    content: "👑";
+    display: block;
+  }
+}
+
+.player-points {
+  font-weight: bold;
+}
