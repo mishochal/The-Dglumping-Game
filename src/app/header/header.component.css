@@ -1,0 +1,89 @@
+header {
+  position: relative;
+  z-index: 1000;
+  padding-block: .25rem;
+  box-shadow: 0 0 10px oklch(from var(--clr-primary) l c h / 0.35);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  max-width: 120px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-primary)
+}
+
+.nav-link {
+  padding: .75rem .5rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  width: 0;
+  height: 4px;
+  background-color: var(--clr-primary);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: skew(-45deg);
+  transition: width 0.25s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.auth {
+  display: flex;
+  gap: 0px;
+}
+
+.button {
+  border: 0;
+  padding: 1rem 0.75rem;
+  background-color: transparent;
+}
+
+.sign-up {
+  /* border-right: 2px solid var(--clr-primary); */
+}
+
+.auth-link {
+  padding: .675rem 1.25rem;
+  background-color: var(--clr-primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.25rem;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--clr-light);
+  }
+}
