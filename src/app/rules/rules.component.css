@@ -1,0 +1,17 @@
+.game-desc {
+  text-align: center;
+  font-size: 1.125rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--clr-primary);
+}
+
+.rules {
+  padding-left: 2ch;
+  margin-top: 2rem;
+  display: grid;
+  gap: .375rem;
+}
+
+.rule::marker {
+  font-weight: bold;
+}
