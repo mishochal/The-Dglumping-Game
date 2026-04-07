@@ -1,3 +1,50 @@
-p {
-  background-color: red;
+main {
+  padding-top: 2.5rem;
+}
+
+form {
+  max-width: 400px;
+  margin-inline: auto;
+  padding: 2rem 1.5rem;
+  display: grid;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px 1px oklch(from var(--clr-primary) l c h / 0.5);
+}
+
+.form-group {
+  display: grid;
+  gap: 0.375rem;
+}
+
+input {
+  padding: 0.5rem 1rem;
+  color: var(--clr-primary);
+  border-radius: .25rem;
+  border: 1px solid var(--clr-dark);
+
+  &:focus-visible {
+    outline: 1px solid var(--clr-dark)
+  }
+}
+
+.redirect-link {
+  color: var(--clr-light);
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.submit-btn {
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: var(--clr-dark);
+  font-weight: bold;
+  border: 0;
+  border-radius: .25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: var(--clr-light);
+  }
 }
