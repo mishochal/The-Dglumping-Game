@@ -2,6 +2,7 @@
   <section class="leaderboard-section container">
     <h1 class="title">Leaderboard</h1>
 
+    @if(leaderboard().length > 0) {
     <table class="leaderboard-table">
       <thead>
         <tr>
@@ -15,34 +16,19 @@
         </tr>
       </thead>
       <tbody>
+        @for(player of leaderboard(); track player.id) {
         <tr>
-          <td>1</td>
-          <td class="player">Dglumpita</td>
-          <td>225</td>
-          <td>82</td>
-          <td>118</td>
-          <td>425</td>
-          <td class="player-points">1200</td>
+          <td>{{$index + 1}}</td>
+          <td class="player">{{player.username}}</td>
+          <td>{{player.first}}</td>
+          <td>{{player.second}}</td>
+          <td>{{player.third}}</td>
+          <td>{{player.total_dglumps}}</td>
+          <td class="player-points">{{player.points}}</td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td class="player">Dglumpitron</td>
-          <td>90</td>
-          <td>150</td>
-          <td>110</td>
-          <td>350</td>
-          <td class="player-points">920</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td class="player">Dglumpito1996</td>
-          <td>25</td>
-          <td>50</td>
-          <td>100</td>
-          <td>175</td>
-          <td class="player-points">320</td>
-        </tr>
+        }
       </tbody>
     </table>
+    }
   </section>
 </main>
