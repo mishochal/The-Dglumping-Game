@@ -24,4 +24,24 @@ export class SupabaseService {
 
     return { data, error };
   }
+
+  getTableUpdates(tableName: string): Observable<any> {
+    return new Observable((observer) => {
+      const channel = this.supabase
+        .channel('schema-db-changes')
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: tableName },
+          (payload) => {
+            observer.next(payload); // Push the change to the app
+          }
+        )
+        .subscribe();
+
+      // Cleanup when the component is destroyed
+      return () => {
+        this.supabase.removeChannel(channel);
+      };
+    });
+  }
 }
