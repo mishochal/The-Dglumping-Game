@@ -53,7 +53,8 @@
     <div class="form-group">
       <label for="confirm-password">Confirm Password</label>
       <input type="password" name="confirm-password" id="confirm-password" class="input-field"
-        [(ngModel)]="signUpData.confirmPassword" required minlength="6" maxlength="16" #confirmPasswordCtrl="ngModel">
+        [(ngModel)]="signUpData.confirmPassword" required minlength="6" maxlength="16"
+        [appConfirmPassword]="signUpData.password" #confirmPasswordCtrl="ngModel">
 
       @if(confirmPasswordCtrl.invalid && confirmPasswordCtrl.touched) {
       <p class="error">
@@ -63,6 +64,8 @@
         <span>Password must be more than 6 characters long</span>
         } @else if(confirmPasswordCtrl.hasError("maxlength")) {
         <span>Password cannot be more than 16 characters long</span>
+        } @else if(confirmPasswordCtrl.hasError("passwordNotMatching")) {
+        <span>Password doesn't match</span>
         }
       </p>
       }
