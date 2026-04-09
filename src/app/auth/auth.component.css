@@ -26,6 +26,19 @@ input {
   &:focus-visible {
     outline: 1px solid var(--clr-dark)
   }
+
+  &:focus+.error {
+    display: none;
+  }
+
+  &.ng-touched:not(:focus):invalid {
+    border: 1px solid var(--clr-error);
+  }
+}
+
+.error {
+  color: var(--clr-error);
+  font-size: .75rem;
 }
 
 .redirect-link {
@@ -46,5 +59,10 @@ input {
 
   &:hover {
     background-color: var(--clr-light);
+  }
+
+  &:disabled {
+    opacity: 0.75;
+    pointer-events: none;
   }
 }

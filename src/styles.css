@@ -2,6 +2,7 @@
   --clr-dark: hsl(0, 100%, 5%);
   --clr-primary: hsl(0, 100%, 8%);
   --clr-light: hsl(0, 100%, 15%);
+  --clr-error: hsl(0, 100%, 30%);
 }
 
 *,
