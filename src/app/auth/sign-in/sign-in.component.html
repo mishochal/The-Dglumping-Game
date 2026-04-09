@@ -1,15 +1,37 @@
 <main>
   <h1 class="title">Sign In</h1>
-  <form>
+  <form #formData="ngForm" (ngSubmit)="handleSignIn(formData)">
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" class="input-field">
+      <input type="email" name="email" id="email" class="input-field" [(ngModel)]="signInData.email" required email
+        #emailCtrl="ngModel">
+
+      @if(emailCtrl.invalid && emailCtrl.touched) {
+      <p class="error">
+        @if(emailCtrl.hasError("required")) {
+        <span>Email is Required</span>
+        } @else if(emailCtrl.hasError("email")) {
+        <span>Not a valid email format</span>
+        }
+      </p>
+      }
+
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" class="input-field">
+      <input type="password" name="password" id="password" class="input-field" [(ngModel)]="signInData.password"
+        required #passwordCtrl="ngModel">
+
+      @if(passwordCtrl.invalid && passwordCtrl.touched) {
+      <p class="error">
+        @if(passwordCtrl.hasError("required")) {
+        <span>Password is Required</span>
+        }
+      </p>
+      }
+
     </div>
     <a routerLink="/sign-up" class="redirect-link">Don't have an account? Sign up.</a>
-    <button class="submit-btn">Sign In</button>
+    <button class="submit-btn" [disabled]="formData.invalid">Sign In</button>
   </form>
 </main>
