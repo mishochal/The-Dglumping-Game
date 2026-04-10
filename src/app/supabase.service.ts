@@ -40,6 +40,17 @@ export class SupabaseService {
     return { data, error };
   }
 
+  async insertLeaderboardRow(userId: string, username: string) {
+    return await this.supabase.
+      from("leaderboard").
+      insert([
+        {
+          user_id: userId,
+          username: username
+        }
+      ]);
+  }
+
   async signUp(email: string, password: string, username: string) {
     return await this.supabase.auth.signUp({
       email: email,

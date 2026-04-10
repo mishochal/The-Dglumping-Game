@@ -32,8 +32,16 @@ export class SignUpComponent {
 
       if (error) {
         alert(error.message);
-      } else if (data) {
-        this.router.navigate(["/home"])
+      } else if (data.user) {
+        const { error } = await this.supabaseService.insertLeaderboardRow(
+          data.user.id,
+          this.signUpData.username
+        )
+        if (error) {
+          alert(error.message)
+        } else {
+          this.router.navigate(["/home"])
+        }
       }
     }
   }
