@@ -14,8 +14,13 @@
       </nav>
 
       <div class="auth">
+        @if(currentUser()) {
+        <p class="dglump">{{currentUser()?.user_metadata?.['display_name']}}</p>
+        <button class="sign-out button" (click)="signOut()">Sign Out</button>
+        } @else{
         <button class="sign-up button"><a routerLink="/sign-up" class="auth-link">Sign Up</a></button>
         <button class="sign-in button"><a routerLink="/sign-in" class="auth-link">Sign In</a></button>
+        }
       </div>
     </div>
   </div>

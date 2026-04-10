@@ -61,20 +61,19 @@ a {
 
 .auth {
   display: flex;
-  gap: 0px;
+  gap: 10px;
+  align-items: center;
 }
 
 .button {
   border: 0;
   padding: 1rem 0.75rem;
   background-color: transparent;
+  cursor: pointer;
 }
 
-.sign-up {
-  /* border-right: 2px solid var(--clr-primary); */
-}
-
-.auth-link {
+.auth-link,
+.sign-out {
   padding: .675rem 1.25rem;
   background-color: var(--clr-primary);
   color: white;

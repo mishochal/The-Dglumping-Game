@@ -9,6 +9,16 @@
 .hero-info {
   font-size: 1.25rem;
   /* font-style: italic; */
+  margin-bottom: 2rem;
+}
+
+.sign-in-message {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  a {
+    color: var(--clr-primary);
+  }
 }
 
 .dglump-btn {
@@ -19,7 +29,6 @@
   width: var(--width);
   height: calc(var(--height) + var(--bottom-height));
 
-  margin-top: 2rem;
   border: none;
   background-color: transparent;
   position: relative;

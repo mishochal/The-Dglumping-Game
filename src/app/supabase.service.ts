@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Injectable, signal } from '@angular/core';
+import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,11 +8,26 @@ import { Observable } from 'rxjs';
 export class SupabaseService {
   private supabase: SupabaseClient;
 
+  private currentUser = signal<User | null>(null)
+  user = this.currentUser.asReadonly();
+
   constructor() {
     this.supabase = createClient(
       "https://yktfevkztnqsppdajbbe.supabase.co",
       "sb_publishable_8CjkR5rjKbrFKOK8Oich9Q_9CjR1hJ6"
     )
+
+    // Initial check
+    this.supabase.auth.getUser().then(({ data }) => {
+      this.currentUser.set(data.user);
+    });
+
+    // Listen for auth changes
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      this.currentUser.set(session?.user ?? null);
+    });
+
+    console.log(this.currentUser())
   }
 
   async getLeaderboard() {
@@ -55,5 +70,9 @@ export class SupabaseService {
         this.supabase.removeChannel(channel);
       };
     });
+  }
+
+  get username() {
+    return this.currentUser()?.user_metadata['display_name'] ?? 'Guest';
   }
 }

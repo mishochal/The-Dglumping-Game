@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SupabaseService } from '../supabase.service';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +9,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  currentUser = computed(() => this.supabaseService.user());
 
+  constructor(private supabaseService: SupabaseService) { }
+
+  signOut() { }
 }
