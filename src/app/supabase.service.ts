@@ -25,6 +25,18 @@ export class SupabaseService {
     return { data, error };
   }
 
+  async signUp(email: string, password: string, username: string) {
+    return await this.supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          display_name: username
+        }
+      }
+    });
+  }
+
   getTableUpdates(tableName: string): Observable<any> {
     return new Observable((observer) => {
       const channel = this.supabase
