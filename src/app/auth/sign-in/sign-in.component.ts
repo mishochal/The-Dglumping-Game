@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SignIn } from '../auth.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { SupabaseService } from '../../supabase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,7 +18,7 @@ export class SignInComponent {
     password: ""
   };
 
-  constructor(private supabaseService: SupabaseService) { }
+  constructor(private supabaseService: SupabaseService, private router: Router) { }
 
   async handleSignIn(formData: NgForm) {
     if (formData.valid) {
@@ -27,6 +28,8 @@ export class SignInComponent {
 
       if (error) {
         alert(error.message)
+      } else if (data) {
+        this.router.navigate(["/home"])
       }
     }
   }

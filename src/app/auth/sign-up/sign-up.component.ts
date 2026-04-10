@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { SignUp } from '../auth.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ConfirmPasswordDirective } from "./confirm-password.directive";
@@ -20,7 +20,7 @@ export class SignUpComponent {
     confirmPassword: ""
   }
 
-  constructor(private supabaseService: SupabaseService) { }
+  constructor(private supabaseService: SupabaseService, private router: Router) { }
 
   async handleSignUp(formData: NgForm) {
     if (formData.valid) {
@@ -33,7 +33,7 @@ export class SignUpComponent {
       if (error) {
         alert(error.message);
       } else if (data) {
-        console.log(data)
+        this.router.navigate(["/home"])
       }
     }
   }
