@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SignIn } from '../auth.model';
 import { FormsModule, NgForm } from '@angular/forms';
+import { SupabaseService } from '../../supabase.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,9 +17,17 @@ export class SignInComponent {
     password: ""
   };
 
-  handleSignIn(formData: NgForm) {
+  constructor(private supabaseService: SupabaseService) { }
+
+  async handleSignIn(formData: NgForm) {
     if (formData.valid) {
-      console.log(formData)
+      const { data, error } = await this.supabaseService.signIn(
+        this.signInData.email, this.signInData.password
+      );
+
+      if (error) {
+        alert(error.message)
+      }
     }
   }
 }
