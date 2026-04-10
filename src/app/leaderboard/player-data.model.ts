@@ -1,5 +1,6 @@
 export interface PlayerData {
   id: number;
+  user_id: string;
   username: string;
   first: number;
   second: number;
