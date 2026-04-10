@@ -13,5 +13,7 @@ export class HeaderComponent {
 
   constructor(private supabaseService: SupabaseService) { }
 
-  signOut() { }
+  signOut() {
+    this.supabaseService.signOut();
+  }
 }

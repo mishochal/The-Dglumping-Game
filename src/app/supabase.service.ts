@@ -52,6 +52,10 @@ export class SupabaseService {
     });
   }
 
+  async signOut() {
+    await this.supabase.auth.signOut();
+  }
+
   getTableUpdates(tableName: string): Observable<any> {
     return new Observable((observer) => {
       const channel = this.supabase
@@ -70,9 +74,5 @@ export class SupabaseService {
         this.supabase.removeChannel(channel);
       };
     });
-  }
-
-  get username() {
-    return this.currentUser()?.user_metadata['display_name'] ?? 'Guest';
   }
 }
