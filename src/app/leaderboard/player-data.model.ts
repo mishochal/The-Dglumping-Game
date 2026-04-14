@@ -8,3 +8,11 @@ export interface PlayerData {
   total_dglumps: number;
   points: number;
 }
+
+export interface DailyPlayerData {
+  id: number;
+  created_at: string;
+  user_id: string;
+  username: string;
+  position: number;
+}

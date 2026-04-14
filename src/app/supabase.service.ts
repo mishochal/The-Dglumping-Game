@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { Observable } from 'rxjs';
+import { DailyPlayerData } from './leaderboard/player-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,22 @@ export class SupabaseService {
       ]);
   }
 
+  async getCurrDayLeaderboard() {
+    const { data, error } = await this.supabase.
+      from("current_day").
+      select("*").
+      order("position", { ascending: true }) as { data: DailyPlayerData[] | null, error: any };
+    return { data, error };
+  }
+
+  async addCurrDayLeaderboard(user: User) {
+
+  }
+
+  async deleteCurrDayLeaderboard() {
+
+  }
+
   async signUp(email: string, password: string, username: string) {
     return await this.supabase.auth.signUp({
       email: email,
@@ -92,5 +109,29 @@ export class SupabaseService {
         this.supabase.removeChannel(channel);
       };
     });
+  }
+
+  async getUTC() {
+    const data = await this.supabase.rpc('get_utc_now');
+    return data.data;
+  }
+
+  isSameDate(currDate: Date, lastDate: Date): boolean {
+    // const resetBase = 4;
+    // const timeZoneOffset = new Date().getTimezoneOffset() / 60;
+    // const resetTime = resetBase - timeZoneOffset;
+
+    const resetTime = 8;
+
+    const diff = currDate.getTime() - lastDate.getTime();
+
+    if (diff / (1000 * 60 * 60 * 24) > 1) {
+      return false;
+    } else if (currDate.getDate() !== lastDate.getDate() && currDate.getHours() > resetTime) {
+      return false
+    } else if (lastDate.getHours() < resetTime && currDate.getHours() > resetTime) {
+      return false;
+    }
+    return true;
   }
 }
