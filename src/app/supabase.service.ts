@@ -78,7 +78,11 @@ export class SupabaseService {
   }
 
   async deleteCurrDayLeaderboard() {
-
+    const { data, error } = await this.supabase.
+      from("current_day").
+      delete().
+      neq("user_id", "000990099009900909009909090900-9ds-90-0asd-90-sad--sa-");
+    return { data, error };
   }
 
   async signUp(email: string, password: string, username: string) {
