@@ -52,6 +52,10 @@ export class SupabaseService {
       ]);
   }
 
+  async updateLeaderboard(user: User, position: number) {
+
+  }
+
   async getCurrDayLeaderboard() {
     const { data, error } = await this.supabase.
       from("current_day").
@@ -60,8 +64,17 @@ export class SupabaseService {
     return { data, error };
   }
 
-  async addCurrDayLeaderboard(user: User) {
-
+  async addCurrDayLeaderboard(user: User, position: number) {
+    const { data, error } = await this.supabase.
+      from("current_day").
+      insert([
+        {
+          user_id: user.id,
+          username: user.user_metadata?.["display_name"],
+          position: position
+        }
+      ]);
+    return { data, error }
   }
 
   async deleteCurrDayLeaderboard() {
