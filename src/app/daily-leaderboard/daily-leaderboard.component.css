@@ -26,3 +26,9 @@ h2 {
     border-bottom: 1px solid var(--clr-primary);
   }
 }
+
+.new-day-text {
+  text-align: center;
+  font-size: 0.875rem;
+  margin-block: 0.25rem;
+}
