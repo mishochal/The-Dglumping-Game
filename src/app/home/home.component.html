@@ -1,24 +1,24 @@
-<main>
+<main class="container">
   <section class="hero">
-    <div class="container">
-      <h1 class="title">Welcome to the Dglumping Game!</h1>
+    <h1 class="title">Welcome to the Dglumping Game!</h1>
 
-      @if(currentUser()) {
-      <p class="hero-info">Ready to take part in the biggest <span class="dglump">Dglumping</span> competition ever?</p>
-      <button class="dglump-btn" (click)="dglump()">
-        <div class="dglump-btn-space">
-          <div class="dglump-btn-shape">
-            <div class="dglump-btn-bottom"></div>
-            <div class="dglump-btn-outline"></div>
-          </div>
-
-          <h2 class="dglump-btn-text">Dglump!</h2>
+    @if(currentUser()) {
+    <p class="hero-info">Ready to take part in the biggest <span class="dglump">Dglumping</span> competition ever?</p>
+    <button class="dglump-btn" (click)="dglump()">
+      <div class="dglump-btn-space">
+        <div class="dglump-btn-shape">
+          <div class="dglump-btn-bottom"></div>
+          <div class="dglump-btn-outline"></div>
         </div>
-      </button>
-      } @else {
-      <p class="sign-in-message"><a routerLink="/sign-in">Sign in</a> to take part in the game</p>
-      }
 
-    </div>
+        <h2 class="dglump-btn-text">Dglump!</h2>
+      </div>
+    </button>
+    } @else {
+    <p class="sign-in-message"><a routerLink="/sign-in">Sign in</a> to take part in the game</p>
+    }
+
   </section>
+
+  <app-daily-leaderboard></app-daily-leaderboard>
 </main>

@@ -2,10 +2,11 @@ import { Component, computed } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { RouterLink } from "@angular/router";
 import { DailyPlayerData } from '../leaderboard/player-data.model';
+import { DailyLeaderboardComponent } from '../daily-leaderboard/daily-leaderboard.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, DailyLeaderboardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
