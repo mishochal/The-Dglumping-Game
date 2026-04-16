@@ -1,0 +1,28 @@
+.leaderboard {
+  max-width: 300px;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px oklch(from var(--clr-primary) l c h / 0.35);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--clr-primary);
+}
+
+.row {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+
+  &.current-user {
+    background-color: oklch(from var(--clr-dark) l c h / 0.2);
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--clr-primary);
+  }
+}

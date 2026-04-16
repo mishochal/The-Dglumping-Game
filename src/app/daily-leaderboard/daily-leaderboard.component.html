@@ -1,1 +1,9 @@
-<p>daily-leaderboard works!</p>
+<section class="leaderboard">
+  <h2>Today's Dglumpers</h2>
+  @for(leaderboardRow of dailyLeaderboard(); track leaderboardRow.id) {
+  <div class="row" [class.current-user]="isCurrentUser(leaderboardRow.username)">
+    <p class="position">{{getMedal($index)}}</p>
+    <p class="player">{{leaderboardRow.username}}</p>
+  </div>
+  }
+</section>
