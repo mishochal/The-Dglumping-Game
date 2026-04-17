@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './rules.component.css'
 })
 export class RulesComponent {
+  isMuted = false;
 
+  toggleSound(audio: HTMLAudioElement) {
+    this.isMuted = !this.isMuted;
+    audio.currentTime = 0;
+  }
 }

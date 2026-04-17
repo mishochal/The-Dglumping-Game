@@ -39,5 +39,49 @@
         cheat the Gods of <span class="dglump">Dglump</span>, so think twice before you do anything you might regret.
       </li>
     </ol>
+    <audio src="/Rules.mp3" autoplay loop [volume]="0.5" [muted]="isMuted" #rulesAudio></audio>
+    @if(!isMuted){
+    <svg (click)="toggleSound(rulesAudio)" width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg" stroke="">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+      <g id="SVGRepo_iconCarrier">
+        <g clip-path="url(#clip0_15_174)">
+          <rect width="24" height="24" fill="white"></rect>
+          <path d="M3 16V8H6L11 4V20L6 16H3Z" stroke="#190000" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M13 9C13 9 15 9.5 15 12C15 14.5 13 15 13 15" stroke="#190000" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path d="M15 7C15 7 18 7.83333 18 12C18 16.1667 15 17 15 17" stroke="#190000" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path d="M17 5C17 5 21 6.16667 21 12C21 17.8333 17 19 17 19" stroke="#190000" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </g>
+        <defs>
+          <clipPath id="clip0_15_174">
+            <rect width="24" height="24" fill="white"></rect>
+          </clipPath>
+        </defs>
+      </g>
+    </svg>
+    } @else {
+    <svg (click)="toggleSound(rulesAudio)" width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+      <g id="SVGRepo_iconCarrier">
+        <g clip-path="url(#190000clip0_15_183)">
+          <rect width="24" height="24" fill="white"></rect>
+          <path d="M3 16V8H6L11 4V20L6 16H3Z" stroke="#19000070" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M14.5 15L20.5 9" stroke="#19000070" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M14.5 9L20.5 15" stroke="#19000070" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+        <defs>
+          <clipPath id="clip0_15_183">
+            <rect width="24" height="24" fill="white"></rect>
+          </clipPath>
+        </defs>
+      </g>
+    </svg>
+    }
   </section>
 </main>
