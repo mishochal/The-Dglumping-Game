@@ -87,8 +87,8 @@ main {
   display: inline-block;
   width: 100%;
   height: 100%;
-  font-size: 66px;
-  line-height: 200px;
+  font-size: 4rem;
+  line-height: var(--height);
   color: #fff;
   text-transform: uppercase;
   text-align: center;
@@ -111,4 +111,24 @@ main {
 
 .dglump-btn:active .dglump-btn-text {
   top: calc(var(--bottom-height) - var(--active-height));
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    grid-template-columns: auto;
+    justify-content: initial;
+    justify-items: center;
+    gap: 40px;
+  }
+
+  .dglump-btn {
+    --width: 260px;
+    --height: 130px;
+    --bottom-height: 65px;
+    --active-height: 35px;
+  }
+
+  .dglump-btn-text {
+    font-size: 3.5rem;
+  }
 }

@@ -53,3 +53,23 @@ main {
 .dglump {
   font-weight: bold;
 }
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .container {
+    padding-inline: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  main {
+    padding-block: 4rem;
+  }
+}

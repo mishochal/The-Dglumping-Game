@@ -24,7 +24,7 @@ tbody tr:first-child .player {
   display: flex;
   border: 0;
   align-items: baseline;
-  gap: 10px;
+  gap: 0.5rem;
 
   &::after {
     content: "👑";
@@ -34,4 +34,21 @@ tbody tr:first-child .player {
 
 .player-points {
   font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+
+  th,
+  td {
+    padding: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  tbody tr:first-child .player {
+    gap: 0.25rem;
+
+    &::after {
+      font-size: 0.75rem;
+    }
+  }
 }
