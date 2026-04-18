@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { SignIn } from '../auth.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { SupabaseService } from '../../supabase.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './sign-in.component.html',
   styleUrl: './../auth.component.css'
 })
