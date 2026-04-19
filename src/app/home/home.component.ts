@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, ElementRef, viewChild } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { RouterLink } from "@angular/router";
 import { DailyPlayerData } from '../leaderboard/player-data.model';
@@ -14,15 +14,25 @@ export class HomeComponent {
 
   currentUser = computed(() => this.supabaseService.user())
 
+  dglumpAudio = viewChild.required<ElementRef<HTMLAudioElement>>("dglumpAudio");
+  winnerAudio = viewChild.required<ElementRef<HTMLAudioElement>>("winnerAudio");
+  loserAudio = viewChild.required<ElementRef<HTMLAudioElement>>("loserAudio");
+
   constructor(private supabaseService: SupabaseService) { }
 
   async dglump() {
+    this.dglumpAudio().nativeElement.play();
     const { data, error } = await this.supabaseService.getCurrDayLeaderboard();
     if (error) {
       alert(error.message);
     } else if (data) {
       const position = await this.getPlayerPosition(data);
       if (position > 0) {
+        if (position <= 3) {
+          this.winnerAudio().nativeElement.play()
+        } else {
+          this.loserAudio().nativeElement.play();
+        }
         alert("your position is: " + position);
       }
     }
