@@ -28,8 +28,8 @@ main {
 }
 
 .dglump-btn {
-  --width: 350px;
-  --height: 200px;
+  --width: 320px;
+  --height: 175px;
   --bottom-height: 100px;
   --active-height: 50px;
   width: var(--width);
@@ -54,8 +54,7 @@ main {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  /* background-image: linear-gradient(to bottom, var(--clr-dark), var(--clr-light)); */
-  background-color: var(--clr-light);
+  background-image: linear-gradient(to bottom, var(--clr-light), #310000);
   box-shadow: 0 var(--bottom-height) 50px #000;
   transition: all 0.15s ease;
   position: absolute;

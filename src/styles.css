@@ -72,7 +72,7 @@ th,
 span,
 label,
 li {
-  text-shadow: 1px 1px 0 var(--clr-dark);
+  text-shadow: 1px 1px 0 #000000;
 }
 
 @media screen and (max-width: 768px) {
