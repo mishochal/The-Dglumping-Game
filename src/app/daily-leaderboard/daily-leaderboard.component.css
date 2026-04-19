@@ -2,7 +2,7 @@
   max-width: 300px;
   padding: 2rem 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 0 10px oklch(from var(--clr-primary) l c h / 0.35);
+  box-shadow: 0 0 10px 2px oklch(from var(--clr-dark) l c h / 0.35);
 }
 
 h2 {

@@ -10,7 +10,7 @@ form {
   display: grid;
   gap: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 0 10px 1px oklch(from var(--clr-primary) l c h / 0.5);
+  box-shadow: 0 0 10px 2px oklch(from var(--clr-dark) l c h / 0.35);
 }
 
 .form-group {
@@ -20,7 +20,7 @@ form {
 
 input {
   padding: 0.5rem 1rem;
-  color: var(--clr-primary);
+  color: var(--clr-dark);
   border-radius: .25rem;
   border: 1px solid var(--clr-dark);
 
@@ -43,8 +43,9 @@ input {
 }
 
 .redirect-link {
-  color: var(--clr-light);
+  color: var(--clr-primary);
   font-size: 14px;
+  text-shadow: none;
   text-decoration: underline;
 }
 

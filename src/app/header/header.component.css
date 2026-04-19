@@ -2,7 +2,7 @@ header {
   position: relative;
   z-index: 1000;
   padding-block: .25rem;
-  box-shadow: 0 0 10px oklch(from var(--clr-primary) l c h / 0.35);
+  box-shadow: 0 0 10px oklch(from var(--clr-dark) l c h / 0.55);
 }
 
 .container {
@@ -47,7 +47,7 @@ a {
   content: "";
   width: 0;
   height: 4px;
-  background-color: var(--clr-primary);
+  background-color: var(--clr-dark);
   position: absolute;
   left: 0;
   bottom: 0;
@@ -75,7 +75,7 @@ a {
 .auth-link,
 .sign-out {
   padding: .675rem 1.25rem;
-  background-color: var(--clr-primary);
+  background-color: var(--clr-dark);
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -140,7 +140,7 @@ a {
   }
 
   .right {
-    background-color: white;
+    background-color: #00000050;
     width: 250px;
     height: 100svh;
     padding: 8rem 3rem;
@@ -152,7 +152,11 @@ a {
 
   header:has(input:checked) .right {
     translate: -100% 0;
-    box-shadow: -2px 0 5px oklch(from var(--clr-primary) l c h / 0.35);
+    box-shadow: 0 0 10px oklch(from var(--clr-dark) l c h / 0.55);
+  }
+
+  header:has(input:checked) .close {
+    display: block;
   }
 
   .right,
@@ -163,6 +167,13 @@ a {
 
   .nav-list {
     gap: 2rem;
+  }
+
+  .close {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
   }
 }
 

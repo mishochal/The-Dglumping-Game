@@ -5,13 +5,13 @@
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
-  border: 3px solid var(--clr-primary);
+  border: 3px solid var(--clr-dark);
 }
 
 th,
 td {
   padding: 0.5rem;
-  border: 1px solid var(--clr-primary);
+  border: 1px solid var(--clr-dark);
   text-align: center;
 }
 

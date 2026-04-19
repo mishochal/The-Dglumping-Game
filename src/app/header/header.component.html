@@ -5,7 +5,7 @@
     </div>
 
     <label class="hamburger">
-      <input type="checkbox">
+      <input type="checkbox" [(ngModel)]="isHamburgerOpen">
     </label>
 
     <div class="right">
@@ -28,4 +28,6 @@
       </div>
     </div>
   </div>
+
+  <div class="close" (click)="close()"></div>
 </header>

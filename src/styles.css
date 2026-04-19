@@ -1,6 +1,6 @@
 :root {
   --clr-dark: hsl(0, 100%, 5%);
-  --clr-primary: hsl(0, 100%, 8%);
+  --clr-primary: hsl(0, 0%, 100%);
   --clr-light: hsl(0, 100%, 15%);
   --clr-error: hsl(0, 100%, 30%);
 }
@@ -15,17 +15,21 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: var(--clr-primary);
+  color: white;
   min-height: 100svh;
+  background-image: url('/bg-landscape.png');
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
 app-root {
-  height: 100%;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -54,6 +58,23 @@ main {
   font-weight: bold;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button,
+td,
+th,
+span,
+label,
+li {
+  text-shadow: 1px 1px 0 var(--clr-dark);
+}
+
 @media screen and (max-width: 768px) {
   html {
     font-size: 15px;
@@ -67,6 +88,10 @@ main {
 @media screen and (max-width: 480px) {
   html {
     font-size: 14px;
+  }
+
+  body {
+    background-image: url("/bg-portrait.png");
   }
 
   main {
