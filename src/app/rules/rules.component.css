@@ -39,4 +39,8 @@ svg {
   main {
     padding-top: 5rem;
   }
+
+  svg path {
+    stroke: #190000;
+  }
 }
