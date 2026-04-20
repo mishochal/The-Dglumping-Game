@@ -1,0 +1,10 @@
+<div class="backdrop" (click)="close()">
+  <div class="position-container" (click)="$event.stopPropagation();">
+    @if(position() <= 3) { <p class="text">Congrats, you are {{getPositionDetails().pos}}. Here is your
+      {{getPositionDetails().medal}}</p>
+      } @else {
+      <p class="text">Haha, not even top 3. Hopefully this is not your first Dglump of the day.</p>
+      }
+      <button class="btn" (click)="close()">OK</button>
+  </div>
+</div>

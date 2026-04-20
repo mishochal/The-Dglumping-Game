@@ -1,18 +1,20 @@
-import { Component, computed, ElementRef, viewChild } from '@angular/core';
+import { Component, computed, ElementRef, viewChild, signal } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { RouterLink } from "@angular/router";
 import { DailyPlayerData } from '../leaderboard/player-data.model';
 import { DailyLeaderboardComponent } from '../daily-leaderboard/daily-leaderboard.component';
+import { PositionComponent } from '../position/position.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, DailyLeaderboardComponent],
+  imports: [RouterLink, DailyLeaderboardComponent, PositionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
   currentUser = computed(() => this.supabaseService.user())
+  position = signal<number>(-1);
 
   dglumpAudio = viewChild.required<ElementRef<HTMLAudioElement>>("dglumpAudio");
   winnerAudio = viewChild.required<ElementRef<HTMLAudioElement>>("winnerAudio");
@@ -26,14 +28,13 @@ export class HomeComponent {
     if (error) {
       alert(error.message);
     } else if (data) {
-      const position = await this.getPlayerPosition(data);
-      if (position > 0) {
-        if (position <= 3) {
+      this.position.set(await this.getPlayerPosition(data));
+      if (this.position() > 0) {
+        if (this.position() <= 3) {
           this.winnerAudio().nativeElement.play()
         } else {
           this.loserAudio().nativeElement.play();
         }
-        alert("your position is: " + position);
       }
     }
   }
@@ -73,5 +74,9 @@ export class HomeComponent {
     }
 
     return position;
+  }
+
+  closePositionWindow() {
+    this.position.set(-1);
   }
 }

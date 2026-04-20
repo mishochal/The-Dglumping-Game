@@ -1,0 +1,42 @@
+.backdrop {
+  background-color: #00000070;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.position-container {
+  padding: 1.5rem 1.5rem 1rem;
+  background-color: white;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 5px;
+  max-width: 400px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.text {
+  color: var(--clr-dark);
+  text-shadow: none;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  float: right;
+  margin-top: 30px;
+  background-color: var(--clr-dark);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--clr-light);
+  }
+}

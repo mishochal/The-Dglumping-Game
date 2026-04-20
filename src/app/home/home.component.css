@@ -132,3 +132,7 @@ main {
     font-size: 3.5rem;
   }
 }
+
+app-position {
+  position: fixed;
+}

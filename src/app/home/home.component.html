@@ -25,4 +25,8 @@
   <audio src="/winner.mp3" #winnerAudio></audio>
 
   <app-daily-leaderboard></app-daily-leaderboard>
+
+  @if(position() > 0) {
+  <app-position [position]="position()" (closeWindow)="closePositionWindow()"></app-position>
+  }
 </main>
