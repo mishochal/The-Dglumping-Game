@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { PlayerData } from './player-data.model';
 import { LoaderComponent } from '../loader/loader.component';
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class LeaderboardComponent implements OnInit {
 
-  leaderboard = signal<PlayerData[]>([])
+  leaderboard = computed(() => this.supabaseService.leaderboard());
 
   isLoading = signal<boolean>(false);
 
@@ -23,31 +23,38 @@ export class LeaderboardComponent implements OnInit {
     const { data, error } = await this.supabaseService.getLeaderboard();
     if (error) {
       alert(error.message);
-    } else if (data) {
-      this.leaderboard.set(data);
     }
     this.isLoading.set(false);
   }
 
   async ngOnInit() {
-    this.getLeaderboard();
-    this.supabaseService.getTableUpdates('leaderboard').subscribe((payload) => {
-      this.updateItemsSignal(payload);
-    });
+    if (!this.supabaseService.isLeaderboardLoaded()) {
+      this.getLeaderboard();
+      this.supabaseService.getTableUpdates('leaderboard').subscribe((payload) => {
+        this.updateLeaderboardSignal(payload);
+      });
+    }
   }
 
-  private updateItemsSignal(payload: any) {
-    this.leaderboard.update((current) => {
-      switch (payload.eventType) {
-        case 'INSERT':
-          return [...current, payload.new];
-        case 'UPDATE':
-          return current.map(item => item.id === payload.new.id ? payload.new : item).sort((a, b) => b.points - a.points);
-        case 'DELETE':
-          return current.filter(item => item.id !== payload.old.id);
-        default:
-          return current;
-      }
-    });
+  private updateLeaderboardSignal(payload: any) {
+    let currData = this.leaderboard();
+    let newData = [];
+
+    switch (payload.eventType) {
+      case 'INSERT':
+        newData = [...currData, payload.new];
+        break;
+      case 'UPDATE':
+        newData = currData.map(item => item.id === payload.new.id ? payload.new : item).sort((a, b) => b.points - a.points);
+        break;
+      case 'DELETE':
+        newData = currData.filter(item => item.id !== payload.old.id);
+        break;
+      default:
+        newData = currData;
+    }
+
+    this.supabaseService.changeLeaderboardData(newData);
   }
 }
+

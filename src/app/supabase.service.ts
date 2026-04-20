@@ -12,6 +12,15 @@ export class SupabaseService {
   private currentUser = signal<User | null>(null)
   user = this.currentUser.asReadonly();
 
+  private leaderboardSignal = signal<PlayerData[]>([]);
+  leaderboard = this.leaderboardSignal.asReadonly();
+
+  private dailyLeaderboardSignal = signal<DailyPlayerData[]>([]);
+  dailyLeaderboard = this.dailyLeaderboardSignal.asReadonly();
+
+  isLeaderboardLoaded = signal<boolean>(false);
+  isDailyLeaderboardLoaded = signal<boolean>(false);
+
   constructor() {
     this.supabase = createClient(
       "https://yktfevkztnqsppdajbbe.supabase.co",
@@ -35,6 +44,11 @@ export class SupabaseService {
       select("*").
       order("points", { ascending: false }).
       limit(10);
+
+    if (data) {
+      this.leaderboardSignal.set(data);
+      this.isLeaderboardLoaded.set(true);
+    }
 
     return { data, error };
   }
@@ -64,11 +78,20 @@ export class SupabaseService {
     return null
   }
 
+  changeLeaderboardData(data: PlayerData[]) {
+    this.leaderboardSignal.set(data);
+  }
+
   async getCurrDayLeaderboard() {
     const { data, error } = await this.supabase.
       from("current_day").
       select("*").
       order("position", { ascending: true }) as { data: DailyPlayerData[] | null, error: any };
+
+    if (data) {
+      this.dailyLeaderboardSignal.set(data);
+      this.isDailyLeaderboardLoaded.set(true);
+    }
     return { data, error };
   }
 
@@ -91,6 +114,10 @@ export class SupabaseService {
       delete().
       neq("user_id", "000990099009900909009909090900-9ds-90-0asd-90-sad--sa-");
     return { data, error };
+  }
+
+  changeDailyLeaderboardData(data: DailyPlayerData[]) {
+    this.dailyLeaderboardSignal.set(data);
   }
 
   async signUp(email: string, password: string, username: string) {

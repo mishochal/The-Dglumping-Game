@@ -12,7 +12,7 @@ import { LoaderComponent } from '../loader/loader.component';
 export class DailyLeaderboardComponent implements OnInit {
   medals = ["🥇", "🥈", "🥉"];
 
-  dailyLeaderboard = signal<DailyPlayerData[] | null>([]);
+  dailyLeaderboard = computed(() => this.supabaseService.dailyLeaderboard());
   currentUser = computed(() => this.supabaseService.user());
 
   isLoading = signal<boolean>(false);
@@ -21,16 +21,18 @@ export class DailyLeaderboardComponent implements OnInit {
   supabaseService = inject(SupabaseService);
 
   async ngOnInit() {
-    this.isLoading.set(true);
-    await this.getLeaderboard()
-    this.isLoading.set(false);
-    this.supabaseService.getTableUpdates('current_day').subscribe((payload) => {
-      this.updateLeaderboard(payload);
-    });
+    if (!this.supabaseService.isDailyLeaderboardLoaded()) {
+      await this.getLeaderboard()
+      this.supabaseService.getTableUpdates('current_day').subscribe((payload) => {
+        this.updateLeaderboard(payload);
+      });
+    }
   }
 
   async getLeaderboard() {
+    this.isLoading.set(true);
     const { data, error } = await this.supabaseService.getCurrDayLeaderboard();
+    this.isLoading.set(false);
 
     if (error) {
       alert(error.message)
@@ -42,10 +44,10 @@ export class DailyLeaderboardComponent implements OnInit {
       const lastDate = new Date(data[data.length - 1].created_at);
 
       if (!this.supabaseService.isSameDate(nowDate, lastDate)) {
+        console.log("vas")
         this.isNewDay.set(true);
       }
     }
-    this.dailyLeaderboard.set(data);
   }
 
   getMedal(position: number) {
@@ -63,22 +65,27 @@ export class DailyLeaderboardComponent implements OnInit {
   }
 
   private updateLeaderboard(payload: any) {
-    this.dailyLeaderboard.update((current) => {
-      switch (payload.eventType) {
-        case 'INSERT':
-          if (current === null) {
-            return current;
-          }
-          this.isNewDay.set(false);
-          return [...current, payload.new];
-        case 'DELETE':
-          if (current === null) {
-            return current;
-          }
-          return current.filter(item => item.id !== payload.old.id);
-        default:
-          return current;
-      }
-    });
+    const currData = this.dailyLeaderboard();
+    let newData = [];
+
+    switch (payload.eventType) {
+      case 'INSERT':
+        if (currData === null) {
+          newData = currData;
+        }
+        this.isNewDay.set(false);
+        newData = [...currData, payload.new];
+        break;
+      case 'DELETE':
+        if (currData === null) {
+          newData = currData;
+        }
+        newData = currData.filter(item => item.id !== payload.old.id);
+        break;
+      default:
+        newData = currData;
+    }
+
+    this.supabaseService.changeDailyLeaderboardData(newData);
   }
 }
