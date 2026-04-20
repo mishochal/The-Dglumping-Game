@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { PlayerData } from './player-data.model';
 import { LoaderComponent } from '../loader/loader.component';
@@ -16,7 +16,7 @@ export class LeaderboardComponent implements OnInit {
 
   isLoading = signal<boolean>(false);
 
-  constructor(private supabaseService: SupabaseService) { }
+  supabaseService = inject(SupabaseService);
 
   async getLeaderboard() {
     this.isLoading.set(true)

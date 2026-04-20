@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { DailyPlayerData } from '../leaderboard/player-data.model';
 import { LoaderComponent } from '../loader/loader.component';
@@ -18,7 +18,7 @@ export class DailyLeaderboardComponent implements OnInit {
   isLoading = signal<boolean>(false);
   isNewDay = signal<boolean>(false);
 
-  constructor(private supabaseService: SupabaseService) { }
+  supabaseService = inject(SupabaseService);
 
   async ngOnInit() {
     this.isLoading.set(true);

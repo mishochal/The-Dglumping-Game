@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SupabaseService } from '../supabase.service';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   isHamburgerOpen = false;
 
-  constructor(private supabaseService: SupabaseService) { }
+  supabaseService = inject(SupabaseService);
 
   signOut() {
     this.supabaseService.signOut();

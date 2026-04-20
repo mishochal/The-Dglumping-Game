@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, viewChild, signal } from '@angular/core';
+import { Component, computed, ElementRef, viewChild, signal, inject } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { RouterLink } from "@angular/router";
 import { DailyPlayerData } from '../leaderboard/player-data.model';
@@ -20,7 +20,7 @@ export class HomeComponent {
   winnerAudio = viewChild.required<ElementRef<HTMLAudioElement>>("winnerAudio");
   loserAudio = viewChild.required<ElementRef<HTMLAudioElement>>("loserAudio");
 
-  constructor(private supabaseService: SupabaseService) { }
+  supabaseService = inject(SupabaseService);
 
   async dglump() {
     this.dglumpAudio().nativeElement.play();

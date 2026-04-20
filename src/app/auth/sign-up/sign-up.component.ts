@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { SignUp } from '../auth.model';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -22,7 +22,8 @@ export class SignUpComponent {
     confirmPassword: ""
   }
 
-  constructor(private supabaseService: SupabaseService, private router: Router) { }
+  supabaseService = inject(SupabaseService);
+  router = inject(Router);
 
   async handleSignUp(formData: NgForm) {
     if (formData.valid) {
