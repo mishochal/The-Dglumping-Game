@@ -27,8 +27,6 @@ export class SupabaseService {
     this.supabase.auth.onAuthStateChange((event, session) => {
       this.currentUser.set(session?.user ?? null);
     });
-
-    console.log(this.currentUser())
   }
 
   async getLeaderboard() {

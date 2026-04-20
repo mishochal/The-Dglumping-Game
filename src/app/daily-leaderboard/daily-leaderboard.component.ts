@@ -66,7 +66,6 @@ export class DailyLeaderboardComponent implements OnInit {
     this.dailyLeaderboard.update((current) => {
       switch (payload.eventType) {
         case 'INSERT':
-          console.log("auf")
           if (current === null) {
             return current;
           }
