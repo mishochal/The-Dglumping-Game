@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { SignUp } from '../auth.model';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ConfirmPasswordDirective } from "./confirm-password.directive";
 import { SupabaseService } from '../../supabase.service';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [RouterLink, FormsModule, ConfirmPasswordDirective],
+  imports: [RouterLink, FormsModule, ConfirmPasswordDirective, LoaderComponent],
   templateUrl: './sign-up.component.html',
   styleUrl: './../auth.component.css'
 })
 export class SignUpComponent {
+  isLoading = signal<boolean>(false);
 
   signUpData: SignUp = {
     username: "",
@@ -24,11 +26,13 @@ export class SignUpComponent {
 
   async handleSignUp(formData: NgForm) {
     if (formData.valid) {
+      this.isLoading.set(true);
       const { data, error } = await this.supabaseService.signUp(
         this.signUpData.email,
         this.signUpData.password,
         this.signUpData.username
       );
+      this.isLoading.set(false);
 
       if (error) {
         alert(error.message);

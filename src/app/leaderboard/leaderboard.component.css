@@ -36,6 +36,16 @@ tbody tr:first-child .player {
   font-weight: bold;
 }
 
+p {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+a {
+  color: var(--clr-primary);
+  font-weight: bold;
+}
+
 @media screen and (max-width: 480px) {
 
   th,

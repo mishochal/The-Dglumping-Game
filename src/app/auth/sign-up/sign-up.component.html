@@ -1,5 +1,8 @@
 <main>
   <h1 class="title">Sign Up</h1>
+  @if(isLoading()) {
+  <app-loader></app-loader>
+  } @else {
   <form #formData="ngForm" (ngSubmit)="handleSignUp(formData)">
     <div class="form-group">
       <label for="username">Username</label>
@@ -35,8 +38,8 @@
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" class="input-field" [(ngModel)]="signUpData.password"
-        required minlength="6" maxlength="16" #passwordCtrl="ngModel">
+      <input type="password" name="password" id="password" class="input-field" autocomplete="off"
+        [(ngModel)]="signUpData.password" required minlength="6" maxlength="16" #passwordCtrl="ngModel">
 
       @if(passwordCtrl.invalid && passwordCtrl.touched) {
       <p class="error">
@@ -52,7 +55,7 @@
     </div>
     <div class="form-group">
       <label for="confirm-password">Confirm Password</label>
-      <input type="password" name="confirm-password" id="confirm-password" class="input-field"
+      <input type="password" name="confirm-password" id="confirm-password" class="input-field" autocomplete="off"
         [(ngModel)]="signUpData.confirmPassword" required minlength="6" maxlength="16"
         [appConfirmPassword]="signUpData.password" #confirmPasswordCtrl="ngModel">
 
@@ -73,4 +76,5 @@
     <a routerLink="/sign-in" class="redirect-link">Already have an account? Sign in.</a>
     <button class="submit-btn" [disabled]="formData.invalid">Sign Up</button>
   </form>
+  }
 </main>

@@ -1,10 +1,11 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { SupabaseService } from '../supabase.service';
 import { DailyPlayerData } from '../leaderboard/player-data.model';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-daily-leaderboard',
-  imports: [],
+  imports: [LoaderComponent],
   templateUrl: './daily-leaderboard.component.html',
   styleUrl: './daily-leaderboard.component.css'
 })
@@ -14,15 +15,15 @@ export class DailyLeaderboardComponent implements OnInit {
   dailyLeaderboard = signal<DailyPlayerData[] | null>([]);
   currentUser = computed(() => this.supabaseService.user());
 
-  isLoading = false;
+  isLoading = signal<boolean>(false);
   isNewDay = signal<boolean>(false);
 
   constructor(private supabaseService: SupabaseService) { }
 
   async ngOnInit() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     await this.getLeaderboard()
-    this.isLoading = false;
+    this.isLoading.set(false);
     this.supabaseService.getTableUpdates('current_day').subscribe((payload) => {
       this.updateLeaderboard(payload);
     });

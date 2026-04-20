@@ -1,7 +1,7 @@
 <section class="leaderboard">
   <h2>Today's Dglumpers</h2>
-  @if(isLoading) {
-  <p>Loading...</p>
+  @if(isLoading()) {
+  <app-loader></app-loader>
   } @else if(!isLoading && (isNewDay() || dailyLeaderboard()?.length === 0)) {
   <p class="new-day-text">No <span class="dglump">Dglumpers</span> yet</p>
   <p class="new-day-text"><span class="dglump">Dglump</span> to be first</p>

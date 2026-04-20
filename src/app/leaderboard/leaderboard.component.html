@@ -2,8 +2,9 @@
   <section class="leaderboard-section container">
     <h1 class="title">Leaderboard</h1>
 
-    @if(leaderboard().length > 0) {
-    <table class="leaderboard-table">
+    @if(isLoading()) {
+    <app-loader></app-loader>
+    }@else if(leaderboard().length > 0) { <table class="leaderboard-table">
       <thead>
         <tr>
           <th>Rank</th>
@@ -29,6 +30,8 @@
         }
       </tbody>
     </table>
+    } @else if(leaderboard().length === 0) {
+    <p>No <span class="dglump">Dglumpers</span> yet. <a routerLink="/sign-up">Sign up</a> to be the first</p>
     }
   </section>
 </main>

@@ -68,3 +68,8 @@ input {
     pointer-events: none;
   }
 }
+
+app-loader {
+  margin-top: 2rem;
+  display: block;
+}
