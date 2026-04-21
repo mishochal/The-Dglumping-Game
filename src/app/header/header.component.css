@@ -2,7 +2,7 @@ header {
   position: relative;
   z-index: 1000;
   padding-block: .25rem;
-  box-shadow: 0 0 10px oklch(from var(--clr-dark) l c h / 0.55);
+  box-shadow: 0 0 3px oklch(from var(--clr-dark) l c h / 0.55);
 }
 
 .container {
@@ -13,6 +13,7 @@ header {
 
 .logo {
   max-width: 120px;
+  filter: drop-shadow(0 0 5px oklch(from var(--clr-dark) l c h / 0.55));
 }
 
 .right {
@@ -148,6 +149,7 @@ a {
     position: fixed;
     top: 0;
     left: 100%;
+    backdrop-filter: blur(3px);
     transition: 0.2s ease-in;
   }
 

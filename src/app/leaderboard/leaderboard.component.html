@@ -4,7 +4,8 @@
 
     @if(isLoading()) {
     <app-loader></app-loader>
-    }@else if(leaderboard().length > 0) { <table class="leaderboard-table">
+    }@else if(leaderboard().length > 0) {
+    <table class="leaderboard-table blur">
       <thead>
         <tr>
           <th>Rank</th>

@@ -20,7 +20,8 @@ body {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color: var(--clr-primary);
+  text-shadow: 1px 1px 0 #000000;
   min-height: 100svh;
   background-image: url('/bg-landscape.png');
   background-size: cover;
@@ -58,21 +59,17 @@ main {
   font-weight: bold;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-button,
-td,
-th,
-span,
-label,
-li {
-  text-shadow: 1px 1px 0 #000000;
+.blur {
+  position: relative;
+}
+
+.blur::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  backdrop-filter: blur(3px);
 }
 
 @media screen and (max-width: 768px) {

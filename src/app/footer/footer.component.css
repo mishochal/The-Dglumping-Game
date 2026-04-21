@@ -2,5 +2,5 @@ footer {
   width: 100%;
   padding-block: 2rem;
   color: white;
-  box-shadow: 0 -2px 15px oklch(from var(--clr-dark) l c h / 0.75);
+  box-shadow: 0 0 10px oklch(from var(--clr-dark) l c h / 0.75);
 }

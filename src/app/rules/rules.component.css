@@ -2,6 +2,12 @@ main {
   position: relative;
 }
 
+.blur {
+  padding-block: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 10px oklch(from var(--clr-dark) l c h / 0.35);
+}
+
 .game-desc {
   text-align: center;
   font-size: 1.125rem;
@@ -11,6 +17,7 @@ main {
 
 .rules {
   padding-left: 2ch;
+  padding-inline: calc(2ch + 1rem) 1rem;
   margin-top: 2rem;
   display: grid;
   gap: .375rem;
