@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SupabaseService } from '../supabase.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

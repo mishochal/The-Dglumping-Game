@@ -1,7 +1,7 @@
 <header>
   <div class="container">
     <div class="left logo">
-      <a routerLink="/home"><img src="/logo.png" alt="The Dglumping Game"></a>
+      <a routerLink="/home"><img src="/logo.png" alt="The Dglumping Game" (click)="close()"></a>
     </div>
 
     <label class="hamburger">
@@ -11,9 +11,10 @@
     <div class="right">
       <nav class="main-nav">
         <ul class="nav-list">
-          <li><a routerLink="/home" class="nav-link">Home</a></li>
-          <li><a routerLink="/leaderboard" class="nav-link">Leaderboard</a></li>
-          <li><a routerLink="/rules" class="nav-link">Rules</a></li>
+          <li><a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="close()">Home</a></li>
+          <li><a class="nav-link" routerLink="/leaderboard" routerLinkActive="active" (click)="close()">Leaderboard</a>
+          </li>
+          <li><a class="nav-link" routerLink="/rules" routerLinkActive="active" (click)="close()">Rules</a></li>
         </ul>
       </nav>
 
@@ -22,8 +23,8 @@
         <p class="dglump">{{currentUser()?.user_metadata?.['display_name']}}</p>
         <button class="sign-out button" (click)="signOut()">Sign Out</button>
         } @else{
-        <button class="sign-up button"><a routerLink="/sign-up" class="auth-link">Sign Up</a></button>
-        <button class="sign-in button"><a routerLink="/sign-in" class="auth-link">Sign In</a></button>
+        <button class="sign-up button"><a routerLink="/sign-up" class="auth-link" (click)="close()">Sign Up</a></button>
+        <button class="sign-in button"><a routerLink="/sign-in" class="auth-link" (click)="close()">Sign In</a></button>
         }
       </div>
     </div>

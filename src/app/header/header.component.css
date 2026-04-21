@@ -55,7 +55,8 @@ a {
   transition: width 0.25s ease-in-out;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 
