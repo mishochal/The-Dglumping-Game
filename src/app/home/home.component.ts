@@ -15,6 +15,7 @@ export class HomeComponent {
 
   currentUser = computed(() => this.supabaseService.user())
   position = signal<number>(-1);
+  isDglumpingDisabled: boolean = false;
 
   dglumpAudio = viewChild.required<ElementRef<HTMLAudioElement>>("dglumpAudio");
   winnerAudio = viewChild.required<ElementRef<HTMLAudioElement>>("winnerAudio");
@@ -23,6 +24,11 @@ export class HomeComponent {
   supabaseService = inject(SupabaseService);
 
   async dglump() {
+    if (this.isDglumpingDisabled) {
+      return
+    }
+    this.isDglumpingDisabled = true;
+
     this.dglumpAudio().nativeElement.play();
     const { data, error } = await this.supabaseService.getCurrDayLeaderboard();
     if (error) {
@@ -37,6 +43,10 @@ export class HomeComponent {
         }
       }
     }
+
+    setTimeout(() => {
+      this.isDglumpingDisabled = false;
+    }, 15000)
   }
 
   async getPlayerPosition(playersData: DailyPlayerData[]): Promise<number> {
