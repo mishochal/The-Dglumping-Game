@@ -1,0 +1,49 @@
+.backdrop {
+  background-color: #00000070;
+  padding: 0.5rem;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.confirm-container {
+  padding: 1.5rem 1.5rem 1rem;
+  background-color: white;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 5px;
+  max-width: min(400px, 95%);
+  width: fit-content;
+  height: fit-content;
+}
+
+.text {
+  color: var(--clr-dark);
+  text-shadow: none;
+  font-weight: bold;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 0.5rem 1.25rem;
+  float: right;
+  background-color: var(--clr-dark);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--clr-light);
+  }
+}

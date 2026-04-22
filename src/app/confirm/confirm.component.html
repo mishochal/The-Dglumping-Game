@@ -1,0 +1,9 @@
+<div class="backdrop" (click)="reject()">
+  <div class="confirm-container" (click)="$event.stopPropagation();">
+    <p class="text">{{text()}}</p>
+    <div class="btns">
+      <button class="btn yes" (click)="confirm()">Yes</button>
+      <button class="btn no" (click)="reject()">Cancel</button>
+    </div>
+  </div>
+</div>
