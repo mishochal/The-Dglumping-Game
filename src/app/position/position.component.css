@@ -14,7 +14,7 @@
   inset: 0;
   margin: auto;
   border-radius: 5px;
-  max-width: 400px;
+  max-width: min(400px, 95%);
   width: fit-content;
   height: fit-content;
 }
