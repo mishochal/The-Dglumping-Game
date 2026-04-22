@@ -40,6 +40,8 @@ input {
 .error {
   color: var(--clr-error);
   font-size: .75rem;
+  text-shadow: none;
+  font-weight: bold;
 }
 
 .redirect-link {

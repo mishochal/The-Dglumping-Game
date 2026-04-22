@@ -3,7 +3,7 @@
   @if(isLoading()) {
   <app-loader></app-loader>
   } @else {
-  <form #formData="ngForm" (ngSubmit)="handleSignUp(formData)">
+  <form #formData="ngForm" (ngSubmit)="handleSignUp(formData)" class="blur">
     <div class="form-group">
       <label for="username">Username</label>
       <input type="username" name="username" id="username" class="input-field" [(ngModel)]="signUpData.username"

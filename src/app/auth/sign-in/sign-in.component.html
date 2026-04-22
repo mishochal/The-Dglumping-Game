@@ -4,7 +4,7 @@
   @if(isLoading()) {
   <app-loader></app-loader>
   } @else {
-  <form #formData="ngForm" (ngSubmit)="handleSignIn(formData)">
+  <form #formData="ngForm" (ngSubmit)="handleSignIn(formData)" class="blur">
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" name="email" id="email" class="input-field" [(ngModel)]="signInData.email" required email
