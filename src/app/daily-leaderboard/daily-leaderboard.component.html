@@ -8,8 +8,11 @@
   } @else {
   @for(leaderboardRow of dailyLeaderboard(); track leaderboardRow.id) {
   <div class="row" [class.current-user]="isCurrentUser(leaderboardRow.username)">
-    <p class="position">{{getMedal($index)}}</p>
-    <p class="player">{{leaderboardRow.username}}</p>
+    <p class="left">{{getMedal($index)}}</p>
+    <div class="right">
+      <p class="player">{{leaderboardRow.username}}</p>
+      <p class="time">{{getTime(leaderboardRow.created_at)}}</p>
+    </div>
   </div>
   }
   }

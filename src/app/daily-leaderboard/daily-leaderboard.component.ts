@@ -88,4 +88,11 @@ export class DailyLeaderboardComponent implements OnInit {
 
     this.supabaseService.changeDailyLeaderboardData(newData);
   }
+
+  getTime(date: string) {
+    const dglumpDate = new Date(date);
+    const hours = dglumpDate.getHours() < 12 ? "0" + dglumpDate.getHours() : dglumpDate.getHours();
+    const time = `${hours}:${dglumpDate.getMinutes()}`;
+    return time;
+  }
 }

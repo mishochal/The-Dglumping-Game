@@ -1,6 +1,6 @@
 main {
   display: grid;
-  grid-template-columns: auto 260px;
+  grid-template-columns: auto 300px;
   gap: 20px;
   justify-content: space-between;
 }
@@ -115,7 +115,7 @@ main {
 
 @media screen and (max-width: 768px) {
   main {
-    grid-template-columns: auto;
+    grid-template-columns: 1fr;
     justify-content: initial;
     justify-items: center;
     gap: 40px;

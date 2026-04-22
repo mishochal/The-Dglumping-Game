@@ -1,5 +1,5 @@
 .leaderboard {
-  max-width: 300px;
+  min-width: 300px;
   padding: 2rem 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 10px 2px oklch(from var(--clr-dark) l c h / 0.35);
@@ -27,8 +27,28 @@ h2 {
   }
 }
 
+.right {
+  display: flex;
+  align-items: center;
+
+  p {
+    padding-inline: 7px;
+  }
+}
+
+.time {
+  font-weight: bold;
+  border-left: 2px solid var(--clr-primary);
+}
+
 .new-day-text {
   text-align: center;
   font-size: 0.875rem;
   margin-block: 0.25rem;
+}
+
+@media screen and (max-width: 480px) {
+  .leaderboard {
+    width: 100%;
+  }
 }
