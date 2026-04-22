@@ -181,9 +181,9 @@ export class SupabaseService {
 
     if (diff / (1000 * 60 * 60 * 24) > 1) {
       return false;
-    } else if (currDate.getDate() !== lastDate.getDate() && currDate.getHours() > resetTime) {
+    } else if (currDate.getDate() !== lastDate.getDate() && currDate.getHours() >= resetTime) {
       return false
-    } else if (lastDate.getHours() < resetTime && currDate.getHours() > resetTime) {
+    } else if (lastDate.getHours() < resetTime && currDate.getHours() >= resetTime) {
       return false;
     }
     return true;
