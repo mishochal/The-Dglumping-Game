@@ -4,7 +4,7 @@
 
     @if(currentUser()) {
     <p class="hero-info">Ready to take part in the biggest <span class="dglump">Dglumping</span> competition ever?</p>
-    <button class="dglump-btn" (click)="dglump()">
+    <button class="dglump-btn" (click)="handleDglump()">
       <div class="dglump-btn-space">
         <div class="dglump-btn-shape">
           <div class="dglump-btn-bottom"></div>
@@ -28,5 +28,10 @@
 
   @if(position() > 0) {
   <app-position [position]="position()" (closeWindow)="closePositionWindow()"></app-position>
+  }
+
+  @if(confirmingDglump()) {
+  <app-confirm text="Did you really Dglump? Do not try to deceive the gods"
+    (response)="confirmDglump($event)"></app-confirm>
   }
 </main>

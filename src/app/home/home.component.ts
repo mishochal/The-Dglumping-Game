@@ -4,10 +4,11 @@ import { RouterLink } from "@angular/router";
 import { DailyPlayerData } from '../leaderboard/player-data.model';
 import { DailyLeaderboardComponent } from '../daily-leaderboard/daily-leaderboard.component';
 import { PositionComponent } from '../position/position.component';
+import { ConfirmComponent } from '../confirm/confirm.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, DailyLeaderboardComponent, PositionComponent],
+  imports: [RouterLink, DailyLeaderboardComponent, PositionComponent, ConfirmComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -15,6 +16,8 @@ export class HomeComponent {
 
   currentUser = computed(() => this.supabaseService.user())
   position = signal<number>(-1);
+  confirmingDglump = signal<boolean>(false);
+
   isDglumpingDisabled: boolean = false;
 
   dglumpAudio = viewChild.required<ElementRef<HTMLAudioElement>>("dglumpAudio");
@@ -22,6 +25,19 @@ export class HomeComponent {
   loserAudio = viewChild.required<ElementRef<HTMLAudioElement>>("loserAudio");
 
   supabaseService = inject(SupabaseService);
+
+  handleDglump() {
+    this.confirmingDglump.set(true);
+  }
+
+  confirmDglump(response: boolean) {
+    this.confirmingDglump.set(false);
+    if (!response) {
+      return;
+    }
+
+    this.dglump();
+  }
 
   async dglump() {
     if (this.isDglumpingDisabled) {
