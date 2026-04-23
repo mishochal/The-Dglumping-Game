@@ -17,3 +17,17 @@
   }
   }
 </section>
+
+<section class="leaderboard blur points-section">
+  <h2>Today's Points</h2>
+  @if(isLoading()) {
+  <app-loader></app-loader>
+  } @else {
+  @for(userPoint of userPoints(); track $index) {
+  <div class="row" [class.current-user]="isCurrentUser(userPoint.username)">
+    <p class="player">{{userPoint.username}}</p>
+    <p class="points">{{userPoint.points}}</p>
+  </div>
+  }
+  }
+</section>
