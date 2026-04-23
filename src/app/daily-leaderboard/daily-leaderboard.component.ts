@@ -91,8 +91,9 @@ export class DailyLeaderboardComponent implements OnInit {
 
   getTime(date: string) {
     const dglumpDate = new Date(date);
-    const hours = dglumpDate.getHours() < 12 ? "0" + dglumpDate.getHours() : dglumpDate.getHours();
-    const time = `${hours}:${dglumpDate.getMinutes()}`;
+    const hours = dglumpDate.getHours() < 10 ? "0" + dglumpDate.getHours() : dglumpDate.getHours();
+    const minutes = dglumpDate.getMinutes() < 10 ? "0" + dglumpDate.getMinutes() : dglumpDate.getMinutes();
+    const time = `${hours}:${minutes}`;
     return time;
   }
 }
